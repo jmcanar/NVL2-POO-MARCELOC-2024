@@ -1,24 +1,28 @@
-class ClimaDiario:
-    def __init__(self):
+class ClimaDiario: #Esta clase representa la información diaria del clima.
+    def __init__(self):#Método constructor que inicializa la lista
         self.temperaturas = []
 
-    def ingresar_temperatura(self, temperatura):
-        self.temperaturas.append(temperatura)
+    def ingresar_temperatura(self, temp):#Método para agregar una nueva temperatura a la lista.
+        self.temperaturas.append(temp)
 
-    def calcular_promedio_semanal(self):
+    def calcular_promedio_semanal(self):#Método para calcular el promedio semanal de las temperaturas almacenadas.
         if len(self.temperaturas) == 0:
             return 0
         return sum(self.temperaturas) / len(self.temperaturas)
-# Función principal para organizar el flujo del programa
-def main():
-    clima_semanal = ClimaDiario()
-    print("Registro de temperaturas diarias y cálculo del promedio semanal")
-    for dia in range(7):
-        temp = float(input(f"Ingrese la temperatura del día {dia + 1}: "))
-        clima_semanal.ingresar_temperatura(temp)
 
-    promedio = clima_semanal.calcular_promedio_semanal()
-    print(f"El promedio semanal de temperaturas es: {promedio:.2f}°C")
-# Ejecutar la función principal
+def main():#La función principal organiza la lógica del programa
+    # Crear una instancia de ClimaDiario
+    clima = ClimaDiario()
+
+    # Ingresar las temperaturas diarias
+    for i in range(7):
+        temp = float(input(f"Ingrese la temperatura del día {i+1}: "))
+        clima.ingresar_temperatura(temp)
+
+    # Calcular y mostrar el promedio semanal
+    promedio_semanal = clima.calcular_promedio_semanal()
+    print(f"La temperatura promedio de la semana es: {promedio_semanal:.2f}°C")
+
+# Llamar a la función principal
 if __name__ == "__main__":
     main()
