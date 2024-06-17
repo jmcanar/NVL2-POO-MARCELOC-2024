@@ -1,3 +1,4 @@
+#temperaturas diarias programacion orientada a objetos POO
 class ClimaDiario: #Esta clase representa la información diaria del clima.
     def __init__(self):#Método constructor que inicializa la lista
         self.temperaturas = []
