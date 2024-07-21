@@ -30,13 +30,15 @@ def mostrar_menu():
     }
 
     while True:
-        print("\nMenu Principal - Dashboard")
+        print('\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        print(".........................Menu Principal - Dashboard.........................")
         # Imprime las opciones del menú
         for key in opciones:
             print(f"{key} - {opciones[key]}")
         print("0 - Salir")
 
-        eleccion = input("Elige un script para ver su código o '0' para salir: ")
+        eleccion = input("Elige un script desde el 1 al 7 para ver su código o '0' para salir: ")
+        print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
         if eleccion == '0':
             break
         elif eleccion in opciones:
@@ -44,8 +46,7 @@ def mostrar_menu():
             ruta_script = os.path.join(ruta_base, opciones[eleccion])
             mostrar_codigo(ruta_script)
         else:
-            print("Opción no válida. Por favor, intenta de nuevo.")
-
+            print("\nOpción no válida. Por favor, intenta de nuevo.")
 
 # Ejecutar el dashboard
 if __name__ == "__main__":
