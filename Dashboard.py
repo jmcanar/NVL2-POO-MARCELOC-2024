@@ -1,5 +1,5 @@
 import os
-
+import subprocess
 
 def mostrar_codigo(ruta_script):
     # Asegúrate de que la ruta al script es absoluta
@@ -13,6 +13,19 @@ def mostrar_codigo(ruta_script):
     except Exception as e:
         print(f"Ocurrió un error al leer el archivo: {e}")
 
+def ejecutar_script(ruta_script):
+    # Asegúrate de que la ruta al script es absoluta
+    ruta_script_absoluta = os.path.abspath(ruta_script)
+    try:
+        print(f"\n--- Ejecutando {ruta_script} ---\n")
+        resultado = subprocess.run(['python', ruta_script_absoluta], capture_output=True, text=True)
+        print(resultado.stdout)
+        if resultado.stderr:
+            print("Errores durante la ejecución:\n", resultado.stderr)
+    except FileNotFoundError:
+        print("El archivo no se encontró.")
+    except Exception as e:
+        print(f"Ocurrió un error al ejecutar el archivo: {e}")
 
 def mostrar_menu():
     # Define la ruta base donde se encuentra el dashboard.py
@@ -37,14 +50,16 @@ def mostrar_menu():
             print(f"{key} - {opciones[key]}")
         print("0 - Salir")
 
-        eleccion = input("Elige un script desde el 1 al 7 para ver su código o '0' para salir: ")
+        eleccion = input("Elige un script desde el 1 al 7 para ver su código, o '0' para salir: ")
         print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
         if eleccion == '0':
             break
         elif eleccion in opciones:
-            # Asegura que el path sea absoluto
             ruta_script = os.path.join(ruta_base, opciones[eleccion])
             mostrar_codigo(ruta_script)
+            ejecutar = input("\n¿Quieres ejecutar este script? (si/no): ")
+            if ejecutar.lower() == 'si':
+                ejecutar_script(ruta_script)
         else:
             print("\nOpción no válida. Por favor, intenta de nuevo.")
 
